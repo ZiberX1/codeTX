@@ -1,37 +1,80 @@
-const g_id = 0
-const g_ep = 0
+let g_id = 3;
+let g_ep = 100;
 
-// remove all element
-var elements = document.getElementsByClassName("read_img");
-while(elements.length > 0){
-    elements[0].parentNode.removeChild(elements[0]);
+removeAndCreateElements();
+load();
+
+function removeAndCreateElements() {
+    // remove all element
+    const elements = document.querySelectorAll(".read_img");
+    elements.forEach(element => element.remove());
+
+    const mainEL = document.getElementById('main');
+
+    for (let i = 0; i <= 100; i++) {
+        const div = document.createElement("div");
+        div.className = "ex read_img";
+        div.id = i.toString();
+        div.setAttribute("data-src", `test/${g_id}/${g_ep}/` + i);
+        div.textContent = i.toString() + ".png";
+
+        mainEL.appendChild(div);
+    }
 }
 
-const mainEL = document.getElementById('main')
+async function load() {
+    await loop_await($('.ex'));
 
-var mainDiv = document.getElementById("main");
-for (var i = 0; i <= 150; i++) {
-    var div = document.createElement("div");
-    div.className = "ex read_img";
-    div.id = i.toString();
-    div.setAttribute("data-src", `test/${g_id}/${g_ep}/` + i);
-    div.textContent = i.toString() + ".png";
+    const main = document.getElementById('main');
+    const childElements = Array.from(main.children);
 
-    mainDiv.appendChild(div);
+    childElements.sort((a, b) => +a.id.match(/\d+/) - +b.id.match(/\d+/));
+
+    childElements.forEach(elem => main.appendChild(elem));
 }
 
-(function($) {
-    $(document).ready(function() {
-        loop_await($('.ex'));
+// remove top tab
+const navbarx = document.querySelector('.navbar.navbar-expand-md');
+navbarx.remove();
 
-        var main = document.getElementById('main');
+// Function to create buttons
+function createButton(name, id, className, onClickFunction) {
+    const button = document.createElement('button');
+    button.textContent = name;
+    button.id = id;
+    button.className = className;
+    button.onclick = onClickFunction;
+    return button;
+}
 
-        [].map.call(main.children, Object).sort(function(a, b) {
-            return +a.id.match(/\d+/) - +b.id.match(/\d+/);
-        }).forEach(function(elem) {
-            main.appendChild(elem);
-        });
+// Function to append buttons
+function appendButtons(buttonArray) {
+    const buttonDiv = document.createElement('div');
+    buttonDiv.id = 'button-div';
+    buttonDiv.style.position = 'fixed';
+    buttonDiv.style.top = '0';
+    buttonDiv.style.right = '0';
+    buttonDiv.style.zIndex = '1000';
 
-    });
+    buttonArray.forEach(button => buttonDiv.appendChild(button));
 
-})(jQuery);
+    document.body.appendChild(buttonDiv);
+}
+
+async function navigate(direction) {
+    if (direction === "next") {
+        g_ep = g_ep > 0 ? g_ep + 1 : 1;
+    } else if (direction === "previous") {
+        g_ep = g_ep > 1 ? g_ep - 1 : 1;
+    }
+
+    removeAndCreateElements();
+    await load();
+}
+
+// Creating the buttons
+const prevButton = createButton('Previous', 'prev-button', 'prev-next-button', () => navigate('previous'));
+const nextButton = createButton('Next', 'next-button', 'prev-next-button', () => navigate('next'));
+
+// Appending the buttons to the DOM
+appendButtons([prevButton, nextButton]);
