@@ -1,9 +1,3 @@
-let g_id = 3;
-let g_ep = 100;
-
-removeAndCreateElements();
-load();
-
 function removeAndCreateElements() {
     // remove all element
     const elements = document.querySelectorAll(".read_img");
@@ -11,7 +5,7 @@ function removeAndCreateElements() {
 
     const mainEL = document.getElementById('main');
 
-    for (let i = 0; i <= 100; i++) {
+    for (let i = 0; i <= 150; i++) {
         const div = document.createElement("div");
         div.className = "ex read_img";
         div.id = i.toString();
@@ -78,3 +72,11 @@ const nextButton = createButton('Next', 'next-button', 'prev-next-button', () =>
 
 // Appending the buttons to the DOM
 appendButtons([prevButton, nextButton]);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+let g_id = 0;
+let g_ep = 0;
+
+removeAndCreateElements();
+load();
