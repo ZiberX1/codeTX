@@ -9,7 +9,7 @@ function removeAndCreateElements() {
         const div = document.createElement("div");
         div.className = "ex read_img";
         div.id = i.toString();
-        div.setAttribute("data-src", `test/${g_id}/${g_ep}/` + i);
+        div.setAttribute("data-src", `test/${zib_id}/${zib_ep}/` + i);
         div.textContent = i.toString() + ".png";
 
         mainEL.appendChild(div);
@@ -17,6 +17,7 @@ function removeAndCreateElements() {
 }
 
 async function load() {
+    await removeAndCreateElements();
     await loop_await($('.ex'));
 
     const main = document.getElementById('main');
@@ -57,9 +58,9 @@ function appendButtons(buttonArray) {
 
 async function navigate(direction) {
     if (direction === "next") {
-        g_ep = g_ep > 0 ? g_ep + 1 : 1;
+        zib_ep = zib_ep > 0 ? zib_ep + 1 : 1;
     } else if (direction === "previous") {
-        g_ep = g_ep > 1 ? g_ep - 1 : 1;
+        zib_ep = zib_ep > 1 ? zib_ep - 1 : 1;
     }
 
     removeAndCreateElements();
@@ -75,8 +76,7 @@ appendButtons([prevButton, nextButton]);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let g_id = 0;
-let g_ep = 0;
+let zib_id = 0;
+let zib_ep = 0;
 
-removeAndCreateElements();
 load();
