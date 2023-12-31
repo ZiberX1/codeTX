@@ -80,3 +80,5 @@ let zib_id = 0;
 let zib_ep = 0;
 
 load();
+
+// $.getScript('https://cdn.jsdelivr.net/gh/ZiberX1/codeTX@main/manmiror.js');
