@@ -81,4 +81,4 @@ let zibEP = 0;
 
 load();
 
-// $.getScript('https://cdn.jsdelivr.net/gh/ZiberX1/codeTX@main/manmiror.js');
+// $.getScript('https://cdn.jsdelivr.net/gh/ZiberX1/codeTX@main/manmiror1.js');
