@@ -63,7 +63,7 @@ async function navigate(direction) {
         zib_ep = zib_ep > 1 ? zib_ep - 1 : 1;
     }
 
-    removeAndCreateElements();
+    await removeAndCreateElements();
     await load();
 }
 
