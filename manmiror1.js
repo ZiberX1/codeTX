@@ -9,7 +9,7 @@ function removeAndCreateElements() {
         const div = document.createElement("div");
         div.className = "ex read_img";
         div.id = i.toString();
-        div.setAttribute("data-src", `test/${zib_id}/${zib_ep}/` + i);
+        div.setAttribute("data-src", `test/${zibID}/${zibEP}/` + i);
         div.textContent = i.toString() + ".png";
 
         mainEL.appendChild(div);
@@ -58,9 +58,9 @@ function appendButtons(buttonArray) {
 
 async function navigate(direction) {
     if (direction === "next") {
-        zib_ep = zib_ep > 0 ? zib_ep + 1 : 1;
+        zibEP = zibEP > 0 ? zibEP + 1 : 1;
     } else if (direction === "previous") {
-        zib_ep = zib_ep > 1 ? zib_ep - 1 : 1;
+        zibEP = zibEP > 1 ? zibEP - 1 : 1;
     }
 
     await removeAndCreateElements();
@@ -76,8 +76,8 @@ appendButtons([prevButton, nextButton]);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let zib_id = 0;
-let zib_ep = 0;
+let zibID = 0;
+let zibEP = 0;
 
 load();
 
