@@ -1,6 +1,3 @@
-let htmlString;
-let jsonData;
-
 // Function //
 function lazyLoadImagesXXX() {
     const lazyImages = document.querySelectorAll(".lazy");
