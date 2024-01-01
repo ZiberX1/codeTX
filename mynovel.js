@@ -102,3 +102,5 @@ button.onclick = function() {
     load();
 }
 document.querySelector('.mt-2').appendChild(button);
+
+// $.getScript('https://cdn.jsdelivr.net/gh/ZiberX1/codeTX@main/mynovel.js')
