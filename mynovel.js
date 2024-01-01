@@ -1,3 +1,7 @@
+let htmlString;
+let jsonData;
+
+// Function //
 function lazyLoadImages() {
     const lazyImages = document.querySelectorAll(".lazy");
 
@@ -27,6 +31,32 @@ function lazyLoadImages() {
     lazyImages.forEach((image) => {
         observer.observe(image);
     });
+}
+
+function getHtml() {
+    $.ajax({
+        url: window.location.href, // text/html
+        type: 'GET', // use GET request as the default method for $.ajax
+        success: function(data) {
+            // If the request is successful, data contains the result
+            // console.log(data);
+            htmlString = data
+            console.log('Get HTML')
+            getJson();
+        },
+        error: function(xhr, status, error) {
+            // If the request fails, the error will be displayed in the console
+            console.log('Error: ' + error);
+        }
+    });
+}
+
+function getJson() {
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(htmlString, 'text/html');
+    let script = doc.getElementById('__NEXT_DATA__');
+    jsonData = JSON.parse(script.textContent);
+    console.log('Get JSON')
 }
 
 function btnClick() {
@@ -65,20 +95,9 @@ function createELzibx() {
 
 async function load() {
     await createELzibx();
-    let jsonElement = document.getElementById('__NEXT_DATA__');
-    const ziberX = document.getElementById('zibx');
+    await getHtml();
 
-    let jsonString = jsonElement.textContent || jsonElement.innerText;
-    let jsonObject;
-
-    try {
-        jsonObject = JSON.parse(jsonString);
-    } catch (error) {
-        console.error('Error parsing JSON:', error);
-        return;
-    }
-
-    let imageUrlLists = jsonObject.props.pageProps.epMain.ImageUrlLists;
+    let imageUrlLists = jsonData.props.pageProps.epMain.ImageUrlLists;
 
     ziberX.innerHTML = '';
     imageUrlLists.forEach(imageUrl => {
@@ -92,7 +111,6 @@ async function load() {
     lazyLoadImages();
 }
 
-// load();
 var button = document.createElement("button");
 button.innerHTML = "Load";
 button.style.position = "absolute";
