@@ -43,7 +43,7 @@ async function loadImages() {
 
     // Retrieves the main container and the ZiberX container
     const mainDiv = document.querySelector('.mt-2');
-    const zibx = document.getElementById('zibx');
+    var zibx = document.getElementById('zibx');
 
     // Creates a new ZiberX container if it doesn't exist
     if (!zibx) {
@@ -52,11 +52,14 @@ async function loadImages() {
         div1.setAttribute('class', 'lazy row pl-4 pr-4 unselectable');
 
         mainDiv.insertBefore(div1, mainDiv.querySelector('.p-4'));
+        zibx = document.getElementById('zibx');
         addButtonListeners();
     }
 
-    // Removes all existing images from the ZiberX container
-    zibx.innerHTML = '';
+    if (zibx) {
+        // Removes all existing images from the ZiberX container
+        zibx.innerHTML = '';
+    }
 
     // Retrieves the image URLs from the JSON data
     const imageUrlLists = jsonData.props.pageProps.epMain.ImageUrlLists;
@@ -157,4 +160,4 @@ function createLoadButton() {
 }
 
 createLoadButton();
-// $.getScript('https://cdn.jsdelivr.net/gh/ZiberX1/codeTX@main/mynovel.js')
+// $.getScript('https://ziberx1.github.io/codeTX/mynovel.js')
