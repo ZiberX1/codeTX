@@ -57,10 +57,16 @@ function appendButtons(buttonArray) {
 }
 
 async function navigate(direction) {
+    const z_ep = document.getElementById('z_ep');
+
     if (direction === "next") {
-        document.getElementById('z_ep').value = document.getElementById('z_ep').value > 0 ? document.getElementById('z_ep').value + 1 : 1;
+        z_ep.value++;
     } else if (direction === "previous") {
-        document.getElementById('z_ep').value = document.getElementById('z_ep').value > 1 ? document.getElementById('z_ep').value - 1 : 1;
+        z_ep.value--;
+    }
+
+    if (z_ep.value < 1) {
+        z_ep.value = 1;
     }
 
     await removeAndCreateElements();
