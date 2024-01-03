@@ -9,7 +9,7 @@ function removeAndCreateElements() {
         const div = document.createElement("div");
         div.className = "ex read_img";
         div.id = i.toString();
-        div.setAttribute("data-src", `test/${zibID}/${zibEP}/` + i);
+        div.setAttribute("data-src", `test/${document.getElementById('z_id').value}/${document.getElementById('z_ep').value}/` + i);
         div.textContent = i.toString() + ".png";
 
         mainEL.appendChild(div);
@@ -58,9 +58,9 @@ function appendButtons(buttonArray) {
 
 async function navigate(direction) {
     if (direction === "next") {
-        zibEP = zibEP > 0 ? zibEP + 1 : 1;
+        document.getElementById('z_ep').value = document.getElementById('z_ep').value > 0 ? document.getElementById('z_ep').value + 1 : 1;
     } else if (direction === "previous") {
-        zibEP = zibEP > 1 ? zibEP - 1 : 1;
+        document.getElementById('z_ep').value = document.getElementById('z_ep').value > 1 ? document.getElementById('z_ep').value - 1 : 1;
     }
 
     await removeAndCreateElements();
@@ -76,9 +76,43 @@ appendButtons([prevButton, nextButton]);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let zibID = 0;
-let zibEP = 0;
+function AddLoad() {
+    // label
+    const labelID = document.createElement('label');
+    labelID.textContent = "ID:";
+    const labelEP = document.createElement('label');
+    labelEP.textContent = "Ep:";
+    
+    // Input
+    const inpID = document.createElement('input');
+    inpID.type = "number";
+    inpID.id = 'z_id';
 
-load();
+    const inpEP = document.createElement('input');
+    inpEP.type = "number";
+    inpEP.id = 'z_ep';
+
+    // Button
+    const LoadBTN = document.createElement('button');
+    LoadBTN.textContent = 'Load';
+    LoadBTN.style.position = "absolute";
+    LoadBTN.style.top = '0px';
+    LoadBTN.style.zIndex = '1000';
+    LoadBTN.onclick = function() {
+        console.log('Load')
+        load();
+    };
+
+    const zibDiv = document.createElement('div');
+    zibDiv.style.position = "absolute";
+    zibDiv.style.color = 'white';
+    zibDiv.appendChild(labelID);
+    zibDiv.appendChild(inpID);
+    zibDiv.appendChild(labelEP);
+    zibDiv.appendChild(inpEP);
+    zibDiv.appendChild(LoadBTN);
+    document.querySelector('.comic-wrapper').insertAdjacentElement('afterbegin', zibDiv)
+}
+AddLoad();
 
 // $.getScript('https://cdn.jsdelivr.net/gh/ZiberX1/codeTX@main/manmiror1.js');
