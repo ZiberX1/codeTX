@@ -38,7 +38,6 @@ async function createZibDiv() {
 
     mainDiv.insertBefore(div1, mainDiv.querySelector('.p-4'));
     zibx = document.getElementById('zibx');
-    await addButtonListeners();
     await loadImages();
 }
 
@@ -64,6 +63,8 @@ async function loadImages() {
         zibx.innerHTML = '';
     }
 
+    await addButtonListeners();
+
     // Retrieves the image URLs from the JSON data
     const imageUrlLists = jsonData.props.pageProps.epMain.ImageUrlLists;
 
@@ -77,7 +78,8 @@ async function loadImages() {
     });
 
     // Initializes the lazy loading functionality for the images
-    lazyLoadImages();
+    // lazyLoadImages();
+    lazyLoadImagesXXX();
 }
 
 // The fetchHTML function fetches the HTML from the page
