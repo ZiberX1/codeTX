@@ -78,8 +78,8 @@ async function loadImages() {
     });
 
     // Initializes the lazy loading functionality for the images
-    // lazyLoadImages();
-    lazyLoadImagesXXX();
+    lazyLoadImages();
+    // lazyLoadImagesXXX();
 }
 
 // The fetchHTML function fetches the HTML from the page
