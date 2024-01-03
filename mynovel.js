@@ -30,6 +30,18 @@ function lazyLoadImagesXXX() {
     });
 }
 
+async function createZibDiv() {
+    const mainDiv = document.querySelector('.mt-2');
+    const div1 = document.createElement('div');
+    div1.setAttribute('id', 'zibx');
+    div1.setAttribute('class', 'lazy row pl-4 pr-4 unselectable');
+
+    mainDiv.insertBefore(div1, mainDiv.querySelector('.p-4'));
+    zibx = document.getElementById('zibx');
+    await addButtonListeners();
+    await loadImages();
+}
+
 // The loadImages function loads images onto the page
 async function loadImages() {
     // Fetches the HTML from the page
@@ -39,18 +51,12 @@ async function loadImages() {
     const jsonData = await fetchJSON(htmlString);
 
     // Retrieves the main container and the ZiberX container
-    const mainDiv = document.querySelector('.mt-2');
     var zibx = document.getElementById('zibx');
 
     // Creates a new ZiberX container if it doesn't exist
     if (!zibx) {
-        const div1 = document.createElement('div');
-        div1.setAttribute('id', 'zibx');
-        div1.setAttribute('class', 'lazy row pl-4 pr-4 unselectable');
-
-        mainDiv.insertBefore(div1, mainDiv.querySelector('.p-4'));
-        zibx = document.getElementById('zibx');
-        addButtonListeners();
+        createZibDiv();
+        return 0;
     }
 
     if (zibx) {
