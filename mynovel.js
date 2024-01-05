@@ -79,7 +79,7 @@ async function loadImages() {
 
     // Initializes the lazy loading functionality for the images
     lazyLoadImages();
-    // lazyLoadImagesXXX();
+    // lazyLoadImagesXXX(); 
 }
 
 // The fetchHTML function fetches the HTML from the page
@@ -153,15 +153,19 @@ function lazyLoadImages() {
 
 // Creates a button to trigger the loadImages function
 function createLoadButton() {
-    var button = document.createElement("button");
+    const button = document.createElement("button");
     button.innerHTML = "Load";
-    button.style.position = "absolute";
-    button.style.top = "100px";
-    button.style.left = "0px";
+    // button.style.position = "absolute";
+    // button.style.top = "100px";
+    // button.style.left = "0px";
     button.onclick = function() {
         loadImages();
     }
-    document.querySelector('.mt-2').appendChild(button);
+
+    const div = document.createElement('div');
+    div.appendChild(button)
+    document.querySelector('.d-flex.justify-content-center.flex-nowrap').insertAdjacentElement('afterbegin', div)
+    // document.querySelector('.mt-2').appendChild(button);
 }
 
 createLoadButton();
