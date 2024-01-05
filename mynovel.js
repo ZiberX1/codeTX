@@ -163,8 +163,9 @@ function createLoadButton() {
     }
 
     const div = document.createElement('div');
+    div.id = 'ziberx_load'
     div.appendChild(button)
-    document.querySelector('.d-flex.justify-content-center.flex-nowrap').insertAdjacentElement('afterbegin', div)
+    document.getElementsByClassName('d-flex justify-content-center flex-nowrap')[1].insertAdjacentElement('afterbegin', div);
     // document.querySelector('.mt-2').appendChild(button);
 }
 
