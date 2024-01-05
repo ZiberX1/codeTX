@@ -1,36 +1,37 @@
 // Function //
-function lazyLoadImagesXXX() {
-    const lazyImages = document.querySelectorAll(".lazy");
+// function lazyLoadImagesXXX() {
+//     const lazyImages = document.querySelectorAll(".lazy");
 
-    const options = {
-        root: null, // Use the viewport as the root
-        rootMargin: "0px",
-        threshold: 0.1 // Specify the threshold for intersection
-    };
+//     const options = {
+//         root: null, // Use the viewport as the root
+//         rootMargin: "0px",
+//         threshold: 0.1 // Specify the threshold for intersection
+//     };
 
-    const handleIntersection = (entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                const src = img.getAttribute("data-src");
+//     const handleIntersection = (entries, observer) => {
+//         entries.forEach((entry) => {
+//             if (entry.isIntersecting) {
+//                 const img = entry.target;
+//                 const src = img.getAttribute("data-src");
 
-                // Replace the placeholder with the actual image source
-                img.src = src;
+//                 // Replace the placeholder with the actual image source
+//                 img.src = src;
 
-                // Stop observing the image
-                observer.unobserve(img);
-            }
-        });
-    };
+//                 // Stop observing the image
+//                 observer.unobserve(img);
+//             }
+//         });
+//     };
 
-    const observer = new IntersectionObserver(handleIntersection, options);
+//     const observer = new IntersectionObserver(handleIntersection, options);
 
-    lazyImages.forEach((image) => {
-        observer.observe(image);
-    });
-}
+//     lazyImages.forEach((image) => {
+//         observer.observe(image);
+//     });
+// }
 
 async function createZibDiv() {
+    console.log('Create Div [zibx]');
     const mainDiv = document.querySelector('.mt-2');
     const div1 = document.createElement('div');
     div1.setAttribute('id', 'zibx');
@@ -78,6 +79,7 @@ async function loadImages() {
     });
 
     // Initializes the lazy loading functionality for the images
+    console.log('Load Images');
     lazyLoadImages();
     // lazyLoadImagesXXX(); 
 }
@@ -109,14 +111,14 @@ function addButtonListeners() {
     if (faArrowRight) {
         faArrowRight.parentElement.onclick = function() {
             zibx.innerHTML = '';
-            console.log('click');
+            // console.log('click');
         };
     }
 
     if (faArrowLeft) {
         faArrowLeft.parentElement.onclick = function() {
             zibx.innerHTML = '';
-            console.log('click');
+            // console.log('click');
         };
     }
 }
@@ -155,6 +157,7 @@ function lazyLoadImages() {
 function createLoadButton() {
     const button = document.createElement("button");
     button.innerHTML = "Load";
+    button.classList.add("btn", "btn-sm", "btn-ghost-secondary");
     // button.style.position = "absolute";
     // button.style.top = "100px";
     // button.style.left = "0px";
