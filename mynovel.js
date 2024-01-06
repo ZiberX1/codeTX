@@ -163,7 +163,7 @@ function lazyLoadImages() {
 }
 
 // Creates a button to trigger the loadImages function
-function createLoadButton() {
+function Zloadbtn() {
     const button = document.createElement("button");
     button.innerHTML = "Load";
     button.classList.add("btn", "btn-sm", "btn-ghost-secondary");
@@ -181,5 +181,5 @@ function createLoadButton() {
     // document.querySelector('.mt-2').appendChild(button);
 }
 
-createLoadButton();
+Zloadbtn();
 // $.getScript('https://ziberx1.github.io/codeTX/mynovel.js')
