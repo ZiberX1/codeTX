@@ -44,15 +44,6 @@ async function createZibDiv() {
 
 // The loadImages function loads images onto the page
 async function loadImages() {
-    // Fetches the HTML from the page
-    const htmlString = await fetchHTML();
-
-    // Extracts the JSON data from the HTML
-    const jsonData = await fetchJSON(htmlString);
-
-    // Retrieves the main container and the ZiberX container
-    var zibx = document.getElementById('zibx');
-
     // Creates a new ZiberX container if it doesn't exist
     if (!zibx) {
         createZibDiv();
@@ -63,6 +54,15 @@ async function loadImages() {
         // Removes all existing images from the ZiberX container
         zibx.innerHTML = '';
     }
+    
+    // Fetches the HTML from the page
+    const htmlString = await fetchHTML();
+
+    // Extracts the JSON data from the HTML
+    const jsonData = await fetchJSON(htmlString);
+
+    // Retrieves the main container and the ZiberX container
+    var zibx = document.getElementById('zibx');
 
     await addButtonListeners();
 
