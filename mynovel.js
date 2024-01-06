@@ -164,6 +164,7 @@ function lazyLoadImages() {
 
 // Creates a button to trigger the loadImages function
 function Zloadbtn() {
+    console.log('Zloadbtn();');
     const button = document.createElement("button");
     button.innerHTML = "Load";
     button.classList.add("btn", "btn-sm", "btn-ghost-secondary");
