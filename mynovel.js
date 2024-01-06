@@ -42,11 +42,20 @@ async function createZibDiv() {
     await loadImages();
 }
 
+// print Product Name
+async function Nzib() {
+    const zibH1 = await fetchHTML();
+    const zibJSON1 = await fetchJSON(zibH1);
+
+    const name = zibJSON1.props.pageProps.product.ProductName
+    console.log(name);
+}
+
 // The loadImages function loads images onto the page
 async function loadImages() {
     // Retrieves the main container and the ZiberX container
     var zibx = document.getElementById('zibx');
-    
+
     // Creates a new ZiberX container if it doesn't exist
     if (!zibx) {
         createZibDiv();
